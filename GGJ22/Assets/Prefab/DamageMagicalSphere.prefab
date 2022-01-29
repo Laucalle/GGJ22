@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2424712208512971301}
   - component: {fileID: 2883070580128853713}
   - component: {fileID: 5564033415155601328}
-  - component: {fileID: 512977385744293790}
   m_Layer: 0
   m_Name: DamageMagicalSphere
   m_TagString: magicalSphere
@@ -160,17 +159,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aee959e0621888a499937aadff7f1b6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &512977385744293790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811675033148437641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18b14150aa128a4ca50114d98375781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
