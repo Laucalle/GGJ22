@@ -14,6 +14,7 @@ public class FirePattern : MonoBehaviour
     public List<float> functionInterval = new List<float> {0.1f, 2f};
     public List<float> executionTime = new List<float> {0.1f, 2f};
 
+    public int sideShooting;
     int counter;
     float timer;
     float timerPhase;
@@ -45,13 +46,39 @@ public class FirePattern : MonoBehaviour
 
     private void Fire()
     {
+        sideShooting = Random.Range(-2, 2);
         float angleStep = (endAngle - startAngle) / bulletNumber;
         float angle = startAngle;
 
         for (int i=0; i<bulletNumber+1; i++)
         {
-            float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f) + sideShooting;
             float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+
+            Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
+            Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
+
+            GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().SetMoveDirection(bulletDir);
+
+            angle += angleStep;
+        }
+    }
+
+    private void FireStar()
+    {
+        sideShooting = Random.Range(-1, 1);
+        bulletNumber = 20;
+        float angleStep = (endAngle - startAngle) / bulletNumber;
+        float angle = startAngle;
+
+        for (int i=0; i<bulletNumber+1; i++)
+        {
+            float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 90f);
+            float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 90f);
 
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
