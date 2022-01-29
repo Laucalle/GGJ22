@@ -6,6 +6,7 @@ public class magicalSphere : MonoBehaviour
 {
     Rigidbody2D rb;
     Vector3 lastVelocity;
+    int sphereType;
 
     // public GameObject hitEffect; // Add animation for the magical sphere hitting something!!
 
@@ -29,11 +30,46 @@ public class magicalSphere : MonoBehaviour
         Destroy(gameObject,2f);
     }
 
+    private int i = 0;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("boss"))
         {
-            Destroy(gameObject);
+            if (i == 0)
+            {
+                Destroy(gameObject);
+                if (sphereType == 0)
+                {
+                    other.gameObject.GetComponent<bossController>().IncrementHealth();
+                }
+                else
+                {
+                    other.gameObject.GetComponent<bossController>().DecrementHealth();
+                }
+                i++;
+            }
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("boss"))
+        {
+            if (i == 1)
+            {
+                i = 0;
+            }
+        }
+    }
+
+    public void setSphereType(int type)
+    {
+        sphereType = type;
+    }
+
+    public int getSphereType()
+    {
+        return sphereType;
     }
 }

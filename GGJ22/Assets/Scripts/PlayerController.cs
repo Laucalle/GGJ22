@@ -8,8 +8,38 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb2D;
     public Camera cam;
 
+    public int health;
+    int maxHealth = 5;
+
     Vector2 movement;
     Vector2 mousePos;
+
+    void Start()
+    {
+        health = maxHealth;
+    }
+
+    public void DecrementHealth()
+    {
+        health--;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            // GAME OVER animation?
+        }
+    }
+
+    public void IncrementHealth()
+    {
+        if ((health + 1) > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health++;
+        }
+    }
 
     void Update()
     {
@@ -30,9 +60,19 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        int sphereType;
         if (other.gameObject.tag == "magicalSphere")
         {
+            sphereType = other.gameObject.GetComponent<magicalSphere>().getSphereType();
             Destroy(other.gameObject);
+            if (sphereType == 0)
+            {
+                IncrementHealth();
+            }
+            else
+            {
+                DecrementHealth();
+            }
         }
     }
 
