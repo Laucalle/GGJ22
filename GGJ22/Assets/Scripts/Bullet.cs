@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("player"))
         {
             Destroy();
+            other.GetComponent<PlayerController>().DecrementHealth();
         }
     }
 }
