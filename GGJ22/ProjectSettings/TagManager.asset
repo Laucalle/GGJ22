@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - boss
+  - player
+  - magicalSphere
   layers:
   - Default
   - TransparentFX

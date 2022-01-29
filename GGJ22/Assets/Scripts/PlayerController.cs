@@ -27,4 +27,13 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb2D.rotation = angle;
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "magicalSphere")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 }

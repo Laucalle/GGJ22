@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 350690535}
   m_Layer: 0
   m_Name: Magic girl
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,6 +478,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6d13e7a319b3940a710cb6a6564b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  callFunction:
+  - Fire
+  - FireSpiral
+  - FireDoubleSpiral
+  functionInterval:
+  - 0.3
+  - 0.2
+  - 0.2
+  executionTime:
+  - 2
+  - 2
+  - 2
 --- !u!50 &1518422763
 Rigidbody2D:
   serializedVersion: 4

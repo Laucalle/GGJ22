@@ -32,16 +32,11 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        //CancelInvoke();
-    }
-
-    void OnTriggetEnter2D(Collider2D col)
-    {
-        if (col.gameObject.layer == 2)
+        if (other.CompareTag("player"))
         {
-            Destroy(gameObject);
+            Destroy();
         }
     }
 }

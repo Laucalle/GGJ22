@@ -10,11 +10,37 @@ public class FirePattern : MonoBehaviour
     private float startAngle = 90f, endAngle = 270f;
 
     private Vector2 bulletMoveDirection;
+    public List<string> callFunction = new List<string> {"Fire", "FireSpiral"};
+    public List<float> functionInterval = new List<float> {0.1f, 2f};
+    public List<float> executionTime = new List<float> {0.1f, 2f};
+
+    int counter;
+    float timer;
+    float timerPhase;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("FireDoubleSpiral", 0f, 1f);
+        counter = 0;
+        timer = 0;
+        timerPhase = 0;
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        timerPhase += Time.deltaTime;
+        if (timerPhase > executionTime[counter])
+        {
+            timerPhase = 0;
+            counter = (counter + 1) % executionTime.Count;
+        }
+
+        if (timer > functionInterval[counter])
+        {
+            Invoke(callFunction[counter], 0f);
+            timer = 0f;
+        }
     }
 
     private void Fire()

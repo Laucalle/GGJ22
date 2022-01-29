@@ -29,11 +29,10 @@ public class magicalSphere : MonoBehaviour
         Destroy(gameObject,2f);
     }
 
-    void OnTriggetEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (col.tag == "boss")
+        if (other.CompareTag("boss"))
         {
-            Debug.Log("collisioning with boss");
             Destroy(gameObject);
         }
     }
