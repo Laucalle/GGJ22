@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool playing;
+    public bool endGame;
 
     // UI TINGS
     public List<GameObject> hearts;
@@ -40,19 +42,32 @@ public class GameManager : MonoBehaviour
         if (playing)
         {
         }
+        if (endGame)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Menu");
+            }
+        }
     }
     void BeginGame()
     {
         playing = true;
     }
+    public void EndGameOver()
+    {
+        // Put Up End Screen
+        playing = false;
+        endGame = true;
+    }
     public void SetPlayerHealth(float health, float maxhealth)
     {
-        float scaledhealth = health / maxhealth * hearts.Count;
+        float scaledhealth = (health * hearts.Count) / maxhealth;
 
-        int full = (int) Mathf.Floor(scaledhealth / hearts.Count);
-        float partial = (float) ((scaledhealth / hearts.Count) - full);
+        int fullHearts = (int) Mathf.Floor(scaledhealth);
+        float partial = (float) (scaledhealth - fullHearts);
         int counter = 0;
-        while (counter < full)
+        while (counter < fullHearts)
         {
             Image image = hearts[counter].transform.GetChild(1).gameObject.GetComponent<Image>();
             if(image.fillAmount != 1)
@@ -89,6 +104,7 @@ public class GameManager : MonoBehaviour
     public void RefillPlayerAmmo(List<int> magical) {
         int heal = 0;
         int hurt = 1;
+        magical.Reverse(); // IT IS A FIFO BUT WE FILL THE OTHER WAY
         for(int i = 0;i<ammo.Count; i++)
         {
             if (i < magical.Count)
@@ -107,21 +123,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void RemovePlayerAmmo(List<int> magical)
+    public void RemovePlayerAmmo(int index)
     {
         int heal = 0;
         int hurt = 1;
-        for (int i = 0; i < ammo.Count; i++)
+        if (index < ammo.Count)
         {
-            if (i < magical.Count)
-            {
-                if (magical[i] == heal)
-                {
-                    ammo[i].transform.GetChild(heal).gameObject.SetActive(false);
-                    ammo[i].transform.GetChild(hurt).gameObject.SetActive(false);
-                }
-                ammo[i].GetComponent<Animator>().SetTrigger("remove");
-            }
+            ammo[index].transform.GetChild(heal).gameObject.SetActive(false);
+            ammo[index].transform.GetChild(hurt).gameObject.SetActive(false);
+            ammo[index].GetComponent<Animator>().SetTrigger("remove");
         }
     }
 

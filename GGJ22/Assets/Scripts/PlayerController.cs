@@ -49,10 +49,12 @@ public class PlayerController : MonoBehaviour
         beingStunned = true;
         Invoke("setBeingHurt",0.583f);
         Invoke("setBeingStunned",0.3f);
+        GameManager.instance.SetPlayerHealth(health, maxHealth);
         if (health <= 0)
         {
             Destroy(gameObject);
             // GAME OVER animation?
+            
         }
     }
 
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             health++;
         }
+        GameManager.instance.SetPlayerHealth(health, maxHealth);
     }
 
     void Update()

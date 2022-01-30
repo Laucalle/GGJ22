@@ -19,6 +19,7 @@ public class bossController : MonoBehaviour
     {
         health--;
         dragon.GetComponent<Animator>().SetTrigger("hurt");
+        GameManager.instance.SetBossHealth(health, maxHealth);
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -38,6 +39,7 @@ public class bossController : MonoBehaviour
         {
             health++;
         }
+        GameManager.instance.SetBossHealth(health, maxHealth);
     }
 
 }

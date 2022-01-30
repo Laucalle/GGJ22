@@ -42,6 +42,7 @@ public class PlayerShoot : MonoBehaviour
         {
             ThrowSphere(magicalSpheresList.Dequeue());
             numberSpheres--;
+            GameManager.instance.RemovePlayerAmmo(numberSpheres);
             if (numberSpheres <= 0)
             {
                 missingSpheres = true;
@@ -55,10 +56,14 @@ public class PlayerShoot : MonoBehaviour
 
     void fillSpheres()
     {
+        List<int> flatMagicalList = new List<int>();
         for (int i=0; i<maxSpheres; i++)
         {
-            magicalSpheresList.Enqueue(Random.Range(0, 2));
+            int type = Random.Range(0, 2);
+            magicalSpheresList.Enqueue(type);
+            flatMagicalList.Add(type);
         }
+        GameManager.instance.RefillPlayerAmmo(flatMagicalList);
         numberSpheres = maxSpheres;
         missingSpheres = false;
     }
