@@ -21,8 +21,8 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         maxSpheres = 5;
+        sphereSpawn = 7;
         timer = sphereSpawn; // it starts here so first update fills it up
-        sphereSpawn = 5;
         missingSpheres = true;
 
         //fillSpheres();
@@ -48,10 +48,6 @@ public class PlayerShoot : MonoBehaviour
             {
                 missingSpheres = true;
             }
-        }
-        else if (missingSpheres)
-        {
-            Debug.Log("No more fire");
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class bossController : MonoBehaviour
 {
     public int health;
-    int maxHealth = 10;
+    int maxHealth = 15;
     public GameObject healthPS;
     public GameObject dragon;
 
@@ -57,6 +57,7 @@ public class bossController : MonoBehaviour
         if (health <= 0)
         {
             PlaySound("deadEnd");
+            GameManager.instance.gameObject.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameWinKiller();
             //Destroy(gameObject);
             // WIN animation?
@@ -72,8 +73,10 @@ public class bossController : MonoBehaviour
         }
         PlaySound("heal");
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
-        if (health >= maxHealth)
+        if ((health+1) >= maxHealth)
         {
+            Debug.Log(maxHealth);
+            Debug.Log(health);
             PlaySound("healedEnd");
             gameMgr.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameWinHealer();

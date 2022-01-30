@@ -170,6 +170,8 @@ public class GameManager : MonoBehaviour
         float current = targetHealth;
         if(current <= target)
         {
+            Debug.Log("SetBossHealth:");
+            Debug.Log(health);
             //healing
             bossBarFX.fillAmount = target;
             laggingBar = bossBar;
