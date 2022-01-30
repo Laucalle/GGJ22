@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     float targetHealth;
     public float bossHealthAnimationDuration = 0.5f;
 
+    public GameObject panelGAMEOVER;
+    public GameObject panelKILLERWIN;
+    public GameObject panelHEALERWIN;
+
     void OnEnable()
     {
         if(instance != null)
@@ -54,12 +58,29 @@ public class GameManager : MonoBehaviour
     {
         playing = true;
     }
+
     public void EndGameOver()
     {
         // Put Up End Screen
+        panelGAMEOVER.SetActive(true);
         playing = false;
         endGame = true;
     }
+    public void EndGameWinKiller()
+    {
+        // Put Up End Screen
+        panelKILLERWIN.SetActive(true);
+        playing = false;
+        endGame = true;
+    }
+    public void EndGameWinHealer()
+    {
+        // Put Up End Screen
+        panelHEALERWIN.SetActive(true);
+        playing = false;
+        endGame = true;
+    }
+
     public void SetPlayerHealth(float health, float maxhealth)
     {
         float scaledhealth = (health * hearts.Count) / maxhealth;

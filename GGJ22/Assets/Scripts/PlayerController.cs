@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
 
     public void DecrementHealth()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         health--;
         animator.SetTrigger("hurt");
         beingHurt = true;
@@ -52,14 +57,19 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.SetPlayerHealth(health, maxHealth);
         if (health <= 0)
         {
+            GameManager.instance.EndGameOver();
             Destroy(gameObject);
             // GAME OVER animation?
-            
         }
     }
 
     public void IncrementHealth()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
@@ -74,7 +84,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
     
@@ -88,6 +102,7 @@ public class PlayerController : MonoBehaviour
             movement.x = 0;
             movement.y = 0;
         }
+       
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     

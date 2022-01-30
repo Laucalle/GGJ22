@@ -43,6 +43,11 @@ public class FirePattern : MonoBehaviour
     }
     void Update()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
         timerPhase += Time.deltaTime;
         if (timerPhase > executionTime[counter])

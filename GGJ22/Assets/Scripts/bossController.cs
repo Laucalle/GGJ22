@@ -17,21 +17,34 @@ public class bossController : MonoBehaviour
 
     public void DecrementHealth()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         health--;
         dragon.GetComponent<Animator>().SetTrigger("hurt");
         GameManager.instance.SetBossHealth(health, maxHealth);
         if (health <= 0)
         {
+            GameManager.instance.EndGameWinKiller();
             Destroy(gameObject);
             // WIN animation?
+            
         }
     }
 
     public void IncrementHealth()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
+
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
+            GameManager.instance.EndGameWinHealer();
             health = maxHealth;
             // YOU WIN BY HEALING THE BOSS
         }

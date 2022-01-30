@@ -500,6 +500,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &297080863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 819336986983212808, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+  m_PrefabInstance: {fileID: 936292577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &319434467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3338862388313785874, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+  m_PrefabInstance: {fileID: 936292577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &350690530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1075,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   bossHealthAnimationDuration: 0.5
+  panelGAMEOVER: {fileID: 319434467}
+  panelKILLERWIN: {fileID: 297080863}
+  panelHEALERWIN: {fileID: 1232697419}
 --- !u!4 &596639911
 Transform:
   m_ObjectHideFlags: 0
@@ -1682,6 +1695,26 @@ PrefabInstance:
     - target: {fileID: 1609134471446113435, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609134471906519042, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000030517578
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609134472320522801, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225164350030815196, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225164350030815196, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338862388313785874, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4394506833328360301, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
       propertyPath: m_IsActive
@@ -6849,6 +6882,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1232697419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3017443398127388133, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
+  m_PrefabInstance: {fileID: 936292577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261827563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4394506833937500387, guid: 7ca7d4c35f565a2409c4f7de3b4a7e02, type: 3}
