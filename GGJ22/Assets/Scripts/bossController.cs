@@ -9,11 +9,32 @@ public class bossController : MonoBehaviour
     public GameObject healthPS;
     public GameObject dragon;
 
+    public AudioClip hurt, heal, scream;
+    public AudioSource audioSrc;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth / 2;
+        audioSrc = GetComponent<AudioSource>();
     }
+
+        public void PlaySound (string clip)
+    {
+        switch(clip)
+        {
+            case "hurt":
+                audioSrc.PlayOneShot(hurt);
+                break;
+            case "heal":
+                audioSrc.PlayOneShot(heal);
+                break;
+            case "scream":
+                audioSrc.PlayOneShot(scream);
+                break;
+        }
+    }
+
 
     public void DecrementHealth()
     {

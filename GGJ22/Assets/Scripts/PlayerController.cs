@@ -21,9 +21,31 @@ public class PlayerController : MonoBehaviour
     public bool beingHurt;
     public bool beingStunned;
 
+    public AudioClip magicWand, die, hurt, heal;
+    public AudioSource audioSrc;
     void Start()
     {
         health = maxHealth;
+        audioSrc = GetComponent<AudioSource>();
+    }
+
+    public void PlaySound (string clip)
+    {
+        switch(clip)
+        {
+            case "attack":
+                audioSrc.PlayOneShot(magicWand, 0.5f);
+                break;
+            case "hurt":
+                audioSrc.PlayOneShot(hurt);
+                break;
+            case "heal":
+                audioSrc.PlayOneShot(heal);
+                break;
+            case "die":
+                audioSrc.PlayOneShot(die);
+                break;
+        }
     }
 
     void setBeingHurt()
@@ -43,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     public void DecrementHealth()
     {
+        PlaySound("hurt");
         if (!GameManager.instance.playing)
         {
             return;
@@ -57,6 +80,7 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.SetPlayerHealth(health, maxHealth);
         if (health <= 0)
         {
+            PlaySound("die");
             GameManager.instance.EndGameOver();
             Destroy(gameObject);
             // GAME OVER animation?
@@ -70,6 +94,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        PlaySound("heal");
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {

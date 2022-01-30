@@ -13,7 +13,6 @@ public class PlayerShoot : MonoBehaviour
     int maxSpheres;
     int numberSpheres;
     bool missingSpheres;
-
     public Queue<int> magicalSpheresList = new Queue<int>();
 
     void Start()
@@ -34,7 +33,6 @@ public class PlayerShoot : MonoBehaviour
         {
             emptyFullSpheres();
             fillSpheres();
-            Debug.Log("You have magic spheres again!");
             timer = 0;
         }
 
@@ -80,6 +78,8 @@ public class PlayerShoot : MonoBehaviour
 
     void ThrowSphere(int sphereType)
     {
+        gameObject.GetComponent<PlayerController>().PlaySound("attack");
+
         GameObject newSphere = Instantiate(magicalSpherePrefab[sphereType], throwPoint.position, throwPoint.rotation);
         Rigidbody2D rb2D = newSphere.GetComponent<Rigidbody2D>();
         rb2D.AddForce(throwPoint.up * sphereForce, ForceMode2D.Impulse);
