@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool playing;
     public bool endGame;
+    public bool startAnimPlaying;
 
     // UI TINGS
     public List<GameObject> hearts;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
         BeginGame();
+        endGame = false;
+        startAnimPlaying = false; // TODO: SET TO TRUE!
         // possibly call initit things on the boss 
     }
     // Start is called before the first frame update
@@ -57,6 +60,11 @@ public class GameManager : MonoBehaviour
     void BeginGame()
     {
         playing = true;
+    }
+
+    public void StartAnimationEnded()
+    {
+        startAnimPlaying = false;
     }
 
     public void EndGameOver()

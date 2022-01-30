@@ -18,18 +18,18 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         maxSpheres = 5;
-        timer = 0;
+        timer = sphereSpawn; // it starts here so first update fills it up
         sphereSpawn = 5;
-        missingSpheres = false;
+        missingSpheres = true;
 
-        fillSpheres();
+        //fillSpheres();
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= sphereSpawn)
+        if (timer >= sphereSpawn && !GameManager.instance.startAnimPlaying)
         {
             emptyFullSpheres();
             fillSpheres();
