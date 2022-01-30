@@ -54,6 +54,7 @@ public class PlayerShoot : MonoBehaviour
 
     void fillSpheres()
     {
+        gameObject.GetComponent<PlayerController>().audioSrcCoin.PlayOneShot(gameObject.GetComponent<PlayerController>().coin);
         List<int> flatMagicalList = new List<int>();
         for (int i=0; i<maxSpheres; i++)
         {

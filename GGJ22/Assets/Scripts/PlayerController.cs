@@ -20,9 +20,10 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     public bool beingHurt;
     public bool beingStunned;
+    public GameObject gameMgr;
 
-    public AudioClip magicWand, die, hurt, heal;
-    public AudioSource audioSrcHurt, audioSrcHeal, audioSrc;
+    public AudioClip magicWand, die, hurt, heal, coin;
+    public AudioSource audioSrcHurt, audioSrcHeal, audioSrc, audioSrcCoin;
     void Start()
     {
         health = maxHealth;
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             audioSrc.PlayOneShot(die);
+            gameMgr.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameOver();
             Destroy(gameObject);
             // GAME OVER animation?

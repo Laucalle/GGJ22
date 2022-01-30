@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 350690531}
   - component: {fileID: 350690538}
   - component: {fileID: 350690537}
+  - component: {fileID: 350690539}
   m_Layer: 0
   m_Name: Magic girl
   m_TagString: player
@@ -666,13 +667,16 @@ MonoBehaviour:
   healthPS: {fileID: 1054301415}
   beingHurt: 0
   beingStunned: 0
+  gameMgr: {fileID: 596639909}
   magicWand: {fileID: 8300000, guid: 64be9327f8c30ce4fa734fe3581f450e, type: 3}
   die: {fileID: 8300000, guid: 6955b0359c84b9e4bb83b8cf950e5188, type: 3}
   hurt: {fileID: 8300000, guid: fa60cb9ce0f5600468f33ca2a3abc895, type: 3}
   heal: {fileID: 8300000, guid: 5ae2954a470e6394aae35fe839bf705d, type: 3}
+  coin: {fileID: 8300000, guid: 353e53c1b94891147aa184d0232ea0ef, type: 3}
   audioSrcHurt: {fileID: 350690531}
   audioSrcHeal: {fileID: 350690538}
   audioSrc: {fileID: 350690537}
+  audioSrcCoin: {fileID: 350690539}
 --- !u!50 &350690534
 Rigidbody2D:
   serializedVersion: 4
@@ -845,6 +849,102 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &350690539
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350690530}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1313,6 +1413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596639911}
   - component: {fileID: 596639910}
+  - component: {fileID: 596639912}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1390,6 +1491,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &596639912
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596639909}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 827b49d22e525e9498c13c6ffd7cb46f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &607985426
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,12 +7567,12 @@ MonoBehaviour:
   - FireDoubleSpiral
   functionInterval:
   - 1
-  - 0.4
-  - 0.4
+  - 0.1
+  - 0.1
   executionTime:
   - 2
-  - 2
-  - 2
+  - 3
+  - 3
   sideShooting: 0
 --- !u!50 &1518422763
 Rigidbody2D:
@@ -7508,7 +7705,10 @@ MonoBehaviour:
   hurt: {fileID: 8300000, guid: d8c3ae10c28102b40ba778ce8a9ab0af, type: 3}
   heal: {fileID: 8300000, guid: 5ae2954a470e6394aae35fe839bf705d, type: 3}
   scream: {fileID: 8300000, guid: 264142b7ab0d1c044afd9efb5e059ca2, type: 3}
+  deadEnd: {fileID: 8300000, guid: e582df9aa4b907f42b52d07e6b76d9f1, type: 3}
+  healedEnd: {fileID: 8300000, guid: c82471a4d372d854a8f15eea1e7b9c2e, type: 3}
   audioSrc: {fileID: 0}
+  gameMgr: {fileID: 596639909}
 --- !u!82 &1518422768
 AudioSource:
   m_ObjectHideFlags: 0
