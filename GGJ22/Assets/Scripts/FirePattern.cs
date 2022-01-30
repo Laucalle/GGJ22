@@ -30,6 +30,8 @@ public class FirePattern : MonoBehaviour
         timerPhase = 0;
         isStart = true;
         startDelay = 4f;
+        Invoke("setAttackAnimation", 1f);
+        Invoke("playScream", 1.55f);
     }
 
     void setStart()
@@ -40,6 +42,11 @@ public class FirePattern : MonoBehaviour
     void setAttackAnimation()
     {
         dragon.GetComponent<Animator>().SetTrigger("attack");
+    }
+
+    void playScream()
+    {
+        gameObject.GetComponent<bossController>().PlaySound("scream");
     }
     void Update()
     {
@@ -62,7 +69,6 @@ public class FirePattern : MonoBehaviour
             {
                 Invoke(callFunction[counter], startDelay);
                 Invoke("setStart", startDelay);
-                Invoke("setAttackAnimation", 1f);
             }
             else
             {

@@ -78,7 +78,7 @@ public class PlayerShoot : MonoBehaviour
 
     void ThrowSphere(int sphereType)
     {
-        gameObject.GetComponent<PlayerController>().PlaySound("attack");
+        gameObject.GetComponent<PlayerController>().audioSrc.PlayOneShot(gameObject.GetComponent<PlayerController>().magicWand);
 
         GameObject newSphere = Instantiate(magicalSpherePrefab[sphereType], throwPoint.position, throwPoint.rotation);
         Rigidbody2D rb2D = newSphere.GetComponent<Rigidbody2D>();

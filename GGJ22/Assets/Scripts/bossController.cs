@@ -19,11 +19,12 @@ public class bossController : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
     }
 
-        public void PlaySound (string clip)
+    public void PlaySound (string clip)
     {
         switch(clip)
         {
             case "hurt":
+                audioSrc.pitch = Random.Range(0.8f, 1.1f);
                 audioSrc.PlayOneShot(hurt);
                 break;
             case "heal":
@@ -35,14 +36,13 @@ public class bossController : MonoBehaviour
         }
     }
 
-
     public void DecrementHealth()
     {
         if (!GameManager.instance.playing)
         {
             return;
         }
-
+        PlaySound("hurt");
         health--;
         dragon.GetComponent<Animator>().SetTrigger("hurt");
         GameManager.instance.SetBossHealth(health, maxHealth);
@@ -61,7 +61,7 @@ public class bossController : MonoBehaviour
         {
             return;
         }
-
+        PlaySound("heal");
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
