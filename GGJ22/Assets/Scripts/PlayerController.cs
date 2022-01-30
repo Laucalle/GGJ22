@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
 
     public int health;
     public Animator animator;
+    public GameObject threshold;
     int maxHealth = 5;
+    float lastY;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -48,10 +50,15 @@ public class PlayerController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        moveInput = new Vector2(movement.x, movement.y).normalized;
     
+        if (transform.position.y > threshold.transform.position.y && movement.y > 0)
+        {
+            movement.y = 0;
+        }
+
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     
+        moveInput = new Vector2(movement.x, movement.y).normalized;
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("vel", moveInput.sqrMagnitude);
