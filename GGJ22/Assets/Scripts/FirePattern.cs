@@ -8,6 +8,7 @@ public class FirePattern : MonoBehaviour
     private int numberSpirals = 2;
     private int bulletNumber = 10;
     private float startAngle = 90f, endAngle = 270f;
+    public GameObject dragon;
 
     private Vector2 bulletMoveDirection;
     public List<string> callFunction = new List<string> {"Fire", "FireSpiral"};
@@ -18,6 +19,8 @@ public class FirePattern : MonoBehaviour
     int counter;
     float timer;
     float timerPhase;
+    bool isStart;
+    float startDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +28,19 @@ public class FirePattern : MonoBehaviour
         counter = 0;
         timer = 0;
         timerPhase = 0;
+        isStart = true;
+        startDelay = 4f;
     }
 
+    void setStart()
+    {
+        isStart = false;
+    }
+
+    void setAttackAnimation()
+    {
+        dragon.GetComponent<Animator>().SetTrigger("attack");
+    }
     void Update()
     {
         timer += Time.deltaTime;
@@ -36,10 +50,21 @@ public class FirePattern : MonoBehaviour
             timerPhase = 0;
             counter = (counter + 1) % executionTime.Count;
         }
-
+    
         if (timer > functionInterval[counter])
         {
-            Invoke(callFunction[counter], 0f);
+            if (isStart)
+            {
+                Invoke(callFunction[counter], startDelay);
+                Invoke("setStart", startDelay);
+                Invoke("setAttackAnimation", 1f);
+            }
+            else
+            {
+                setAttackAnimation();
+                Invoke(callFunction[counter], 0f);
+            }
+
             timer = 0f;
         }
     }

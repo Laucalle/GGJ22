@@ -11,22 +11,44 @@ public class PlayerController : MonoBehaviour
     public int health;
     public Animator animator;
     public GameObject threshold;
+    public GameObject healthPS;
     int maxHealth = 5;
     float lastY;
 
     Vector2 movement;
     Vector2 mousePos;
     Vector2 moveInput;
+    public bool beingHurt;
+    public bool beingStunned;
 
     void Start()
     {
         health = maxHealth;
     }
 
+    void setBeingHurt()
+    {
+        beingHurt = false;
+    }
+
+    void setBeingStunned()
+    {
+        beingStunned = false;
+    }
+
+    public bool getBeingHurt()
+    {
+        return beingHurt;
+    }
+
     public void DecrementHealth()
     {
         health--;
         animator.SetTrigger("hurt");
+        beingHurt = true;
+        beingStunned = true;
+        Invoke("setBeingHurt",0.583f);
+        Invoke("setBeingStunned",0.3f);
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -36,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     public void IncrementHealth()
     {
+        healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
             health = maxHealth;
@@ -48,11 +71,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
     
         if (transform.position.y > threshold.transform.position.y && movement.y > 0)
         {
+            movement.y = 0;
+        }
+
+        if (beingStunned)
+        {
+            movement.x = 0;
             movement.y = 0;
         }
 
@@ -66,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         Vector2 lookDir = mousePos - rb2D.position;
@@ -86,7 +117,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                DecrementHealth();
+                Debug.Log(beingHurt);
+                if (!beingHurt)
+                {
+                    DecrementHealth();
+                }
             }
         }
     }

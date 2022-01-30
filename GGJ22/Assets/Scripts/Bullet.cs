@@ -34,10 +34,15 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        bool beingHurt;
         if (other.CompareTag("player"))
         {
             Destroy();
-            other.GetComponent<PlayerController>().DecrementHealth();
+            beingHurt = other.GetComponent<PlayerController>().getBeingHurt();
+            if (!beingHurt)
+            {
+                other.GetComponent<PlayerController>().DecrementHealth();
+            }
         }
     }
 }
