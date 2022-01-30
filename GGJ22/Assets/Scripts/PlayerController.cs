@@ -20,32 +20,13 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     public bool beingHurt;
     public bool beingStunned;
+    public GameObject gameMgr;
 
-    public AudioClip magicWand, die, hurt, heal;
-    public AudioSource audioSrc;
+    public AudioClip magicWand, die, hurt, heal, coin;
+    public AudioSource audioSrcHurt, audioSrcHeal, audioSrc, audioSrcCoin;
     void Start()
     {
         health = maxHealth;
-        audioSrc = GetComponent<AudioSource>();
-    }
-
-    public void PlaySound (string clip)
-    {
-        switch(clip)
-        {
-            case "attack":
-                audioSrc.PlayOneShot(magicWand, 0.5f);
-                break;
-            case "hurt":
-                audioSrc.PlayOneShot(hurt);
-                break;
-            case "heal":
-                audioSrc.PlayOneShot(heal);
-                break;
-            case "die":
-                audioSrc.PlayOneShot(die);
-                break;
-        }
     }
 
     void setBeingHurt()
@@ -65,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public void DecrementHealth()
     {
-        PlaySound("hurt");
+        audioSrcHurt.PlayOneShot(hurt);
         if (!GameManager.instance.playing)
         {
             return;
@@ -80,7 +61,8 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.SetPlayerHealth(health, maxHealth);
         if (health <= 0)
         {
-            PlaySound("die");
+            audioSrc.PlayOneShot(die);
+            gameMgr.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameOver();
             Destroy(gameObject);
             // GAME OVER animation?
@@ -94,7 +76,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        PlaySound("heal");
+        audioSrcHurt.PlayOneShot(heal);
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {

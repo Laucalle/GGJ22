@@ -9,8 +9,9 @@ public class bossController : MonoBehaviour
     public GameObject healthPS;
     public GameObject dragon;
 
-    public AudioClip hurt, heal, scream;
+    public AudioClip hurt, heal, scream, deadEnd, healedEnd;
     public AudioSource audioSrc;
+    public GameObject gameMgr;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +20,12 @@ public class bossController : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
     }
 
-        public void PlaySound (string clip)
+    public void PlaySound (string clip)
     {
         switch(clip)
         {
             case "hurt":
+                audioSrc.pitch = Random.Range(0.8f, 1.1f);
                 audioSrc.PlayOneShot(hurt);
                 break;
             case "heal":
@@ -32,9 +34,14 @@ public class bossController : MonoBehaviour
             case "scream":
                 audioSrc.PlayOneShot(scream);
                 break;
+            case "deadEnd":
+                audioSrc.PlayOneShot(deadEnd);
+                break;
+            case "healedEnd":
+                audioSrc.PlayOneShot(healedEnd);
+                break;
         }
     }
-
 
     public void DecrementHealth()
     {
@@ -42,12 +49,13 @@ public class bossController : MonoBehaviour
         {
             return;
         }
-
+        PlaySound("hurt");
         health--;
         dragon.GetComponent<Animator>().SetTrigger("hurt");
         GameManager.instance.SetBossHealth(health, maxHealth);
         if (health <= 0)
         {
+            PlaySound("deadEnd");
             GameManager.instance.EndGameWinKiller();
             Destroy(gameObject);
             // WIN animation?
@@ -61,10 +69,12 @@ public class bossController : MonoBehaviour
         {
             return;
         }
-
+        PlaySound("heal");
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
+            PlaySound("healedEnd");
+            gameMgr.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameWinHealer();
             health = maxHealth;
             // YOU WIN BY HEALING THE BOSS

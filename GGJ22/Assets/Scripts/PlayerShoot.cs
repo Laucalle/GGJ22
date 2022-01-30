@@ -54,6 +54,7 @@ public class PlayerShoot : MonoBehaviour
 
     void fillSpheres()
     {
+        gameObject.GetComponent<PlayerController>().audioSrcCoin.PlayOneShot(gameObject.GetComponent<PlayerController>().coin);
         List<int> flatMagicalList = new List<int>();
         for (int i=0; i<maxSpheres; i++)
         {
@@ -78,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
 
     void ThrowSphere(int sphereType)
     {
-        gameObject.GetComponent<PlayerController>().PlaySound("attack");
+        gameObject.GetComponent<PlayerController>().audioSrc.PlayOneShot(gameObject.GetComponent<PlayerController>().magicWand);
 
         GameObject newSphere = Instantiate(magicalSpherePrefab[sphereType], throwPoint.position, throwPoint.rotation);
         Rigidbody2D rb2D = newSphere.GetComponent<Rigidbody2D>();
