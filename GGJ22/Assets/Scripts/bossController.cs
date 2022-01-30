@@ -6,6 +6,8 @@ public class bossController : MonoBehaviour
 {
     public int health;
     int maxHealth = 10;
+    public GameObject healthPS;
+    public GameObject dragon;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class bossController : MonoBehaviour
     public void DecrementHealth()
     {
         health--;
+        dragon.GetComponent<Animator>().SetTrigger("hurt");
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -25,6 +28,7 @@ public class bossController : MonoBehaviour
 
     public void IncrementHealth()
     {
+        healthPS.gameObject.GetComponent<ParticleSystem>().Play();
         if ((health + 1) > maxHealth)
         {
             health = maxHealth;
