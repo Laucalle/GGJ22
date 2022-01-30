@@ -15,6 +15,9 @@ public class PlayerShoot : MonoBehaviour
     bool missingSpheres;
     public Queue<int> magicalSpheresList = new Queue<int>();
 
+    public GameObject wand;
+    public GameObject neko;
+
     void Start()
     {
         maxSpheres = 5;
@@ -54,7 +57,12 @@ public class PlayerShoot : MonoBehaviour
 
     void fillSpheres()
     {
+        if (!GameManager.instance.playing)
+        {
+            return;
+        }
         gameObject.GetComponent<PlayerController>().audioSrcCoin.PlayOneShot(gameObject.GetComponent<PlayerController>().coin);
+        neko.GetComponent<Animator>().SetTrigger("out");
         List<int> flatMagicalList = new List<int>();
         for (int i=0; i<maxSpheres; i++)
         {
@@ -80,7 +88,7 @@ public class PlayerShoot : MonoBehaviour
     void ThrowSphere(int sphereType)
     {
         gameObject.GetComponent<PlayerController>().audioSrc.PlayOneShot(gameObject.GetComponent<PlayerController>().magicWand);
-
+        wand.GetComponentInChildren<Animator>().SetTrigger("attack");
         GameObject newSphere = Instantiate(magicalSpherePrefab[sphereType], throwPoint.position, throwPoint.rotation);
         Rigidbody2D rb2D = newSphere.GetComponent<Rigidbody2D>();
         rb2D.AddForce(throwPoint.up * sphereForce, ForceMode2D.Impulse);

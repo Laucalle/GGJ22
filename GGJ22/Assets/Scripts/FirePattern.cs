@@ -37,6 +37,7 @@ public class FirePattern : MonoBehaviour
     void setStart()
     {
         isStart = false;
+        GameManager.instance.StartAnimationEnded();
     }
 
     void setAttackAnimation()

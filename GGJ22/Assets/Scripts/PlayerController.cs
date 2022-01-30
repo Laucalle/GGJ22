@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             audioSrc.PlayOneShot(die);
             gameMgr.GetComponent<AudioSource>().Stop();
             GameManager.instance.EndGameOver();
-            Destroy(gameObject);
+            //Destroy(gameObject);
             // GAME OVER animation?
         }
     }

@@ -18,6 +18,7 @@ public class bossController : MonoBehaviour
     {
         health = maxHealth / 2;
         audioSrc = GetComponent<AudioSource>();
+        GameManager.instance.SetBossHealth(health, maxHealth);
     }
 
     public void PlaySound (string clip)
@@ -57,7 +58,7 @@ public class bossController : MonoBehaviour
         {
             PlaySound("deadEnd");
             GameManager.instance.EndGameWinKiller();
-            Destroy(gameObject);
+            //Destroy(gameObject);
             // WIN animation?
             
         }

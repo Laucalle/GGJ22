@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         BeginGame();
         endGame = false;
-        startAnimPlaying = false; // TODO: SET TO TRUE!
+        startAnimPlaying = true; // TODO: SET TO TRUE!
         // possibly call initit things on the boss 
     }
     // Start is called before the first frame update
