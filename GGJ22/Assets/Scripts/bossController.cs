@@ -72,7 +72,7 @@ public class bossController : MonoBehaviour
         }
         PlaySound("heal");
         healthPS.gameObject.GetComponent<ParticleSystem>().Play();
-        if ((health + 1) > maxHealth)
+        if (health >= maxHealth)
         {
             PlaySound("healedEnd");
             gameMgr.GetComponent<AudioSource>().Stop();

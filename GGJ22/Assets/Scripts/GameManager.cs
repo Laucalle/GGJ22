@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
     {
         float target = (float)health/(float)maxhealth;
         float current = targetHealth;
-        if(current < target)
+        if(current <= target)
         {
             //healing
             bossBarFX.fillAmount = target;
