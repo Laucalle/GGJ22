@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
 
     public int health;
+    public Animator animator;
     int maxHealth = 5;
 
     Vector2 movement;
     Vector2 mousePos;
+    Vector2 moveInput;
 
     void Start()
     {
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public void DecrementHealth()
     {
         health--;
+        animator.SetTrigger("hurt");
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -45,8 +48,13 @@ public class PlayerController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
+        moveInput = new Vector2(movement.x, movement.y).normalized;
+    
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("vel", moveInput.sqrMagnitude);
     }
 
     void FixedUpdate()
